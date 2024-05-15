@@ -22,13 +22,13 @@ import java.util.concurrent.*;
 
 public class Client {
     public static void main(String[] args) {
+        ThreadPoolExecutor threadPoolExecutor=new ThreadPoolExecutor(2,5,2,TimeUnit.SECONDS,new ArrayBlockingQueue<Runnable>(10));
         try {
-            final Socket socket = new Socket("localhost", 12345);
+            final Socket socket = new Socket("loclhost", 12345);
             System.out.println("Connected to server");
 
             // 异步发送消息
-            ThreadPoolExecutor executorService=new ThreadPoolExecutor(3,10,2,TimeUnit.SECONDS,new ArrayBlockingQueue<Runnable>(10));
-            Future<Void> sendFuture = executorService.submit(new Callable<Void>() {
+            Future<Void> sendFuture = threadPoolExecutor.submit(new Callable<Void>() {
                 @Override
                 public Void call() throws Exception {
                     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
@@ -42,7 +42,7 @@ public class Client {
             });
 
             // 异步接收响应
-            Future<String> receiveFuture = executorService.submit(new Callable<String>() {
+            Future<String> receiveFuture = threadPoolExecutor.submit(new Callable<String>() {
                 @Override
                 public String call() throws Exception {
                     BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
@@ -58,10 +58,12 @@ public class Client {
 
             // 关闭连接
             socket.close();
-            executorService.shutdown();
             System.out.println("Connection closed");
         } catch (IOException | InterruptedException | ExecutionException e) {
             e.printStackTrace();
+        }finally {
+            //关闭线程池
+            threadPoolExecutor.shutdown();
         }
     }
 }
