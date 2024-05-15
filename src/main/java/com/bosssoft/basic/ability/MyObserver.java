@@ -11,6 +11,8 @@
  */
 package com.bosssoft.basic.ability;
 
+import java.nio.channels.Channel;
+
 /**
  * @className: MyObserver
  * @description:观察者
@@ -20,7 +22,7 @@ package com.bosssoft.basic.ability;
  **/
 public class MyObserver implements IObserver {
     @Override
-    public void process() {
+    public void process(Channel channel, Object data) {
         System.out.println("Observer执行动作...");
         System.out.println("变化已经被通知者观察到...");
     }

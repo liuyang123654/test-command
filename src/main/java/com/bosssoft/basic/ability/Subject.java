@@ -44,7 +44,7 @@ public class Subject {
      **/
     public void notifyObserver(Channel channel,Object data){
         for (IObserver observer : list) {
-            observer.process();
+            observer.process(channel,data);
         }
     }
     /**
@@ -55,6 +55,5 @@ public class Subject {
      **/
     public void changeState(Channel channel,Object data){
         notifyObserver(channel,data);
-
     }
 }

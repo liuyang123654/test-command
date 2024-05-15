@@ -24,7 +24,7 @@ public class Client {
     public static void main(String[] args) {
         ThreadPoolExecutor threadPoolExecutor=new ThreadPoolExecutor(2,5,2,TimeUnit.SECONDS,new ArrayBlockingQueue<Runnable>(10));
         try {
-            final Socket socket = new Socket("loclhost", 12345);
+            final Socket socket = new Socket("localhost", 12345);
             System.out.println("Connected to server");
 
             // 异步发送消息

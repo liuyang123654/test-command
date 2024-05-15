@@ -10,10 +10,8 @@
  * 2024-01-01    bosssoft  1.0.0   initialize this file
  */
 package com.bosssoft.exception;
-
 import com.sun.org.slf4j.internal.Logger;
 import com.sun.org.slf4j.internal.LoggerFactory;
-
 /**
  * @className: ExceptionHandler
  * @description:
@@ -38,8 +36,8 @@ public class ExceptionHandler {
      * @param e  
      * @return: void
      **/
-    public void ServiceExceptionHandler(ServiceException e){
-        logger.error("发生业务异常！原因是：{}",e.getMessage());
+    public static void ServiceExceptionHandler(ServiceException e){
+        logger.error("错误码：",e.getCode(),";发生业务异常！原因是：",e.getMessage());
         System.out.println("发生业务异常！原因是：{}"+e.getMessage());
     }
 

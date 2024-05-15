@@ -14,15 +14,21 @@ package com.bosssoft.exception;
 /**
  * @className: ServiceException
  * @description:
+ * 自定义业务异常
  * @author: LiuYang
  * @date: 2024/5/15 17:14
  * @since 1.0
  **/
 public class ServiceException extends Exception{
 
-    private String code;
-    public ServiceException(String code,String msg){
+    //自定义错误码
+    private int code;
+    public ServiceException(int code,String msg){
         super(msg);
         this.code=code;
+    }
+
+    public int getCode() {
+        return code;
     }
 }
