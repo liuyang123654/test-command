@@ -27,7 +27,7 @@ public class Client {
             System.out.println("Connected to server");
 
             // 异步发送消息
-            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            ThreadPoolExecutor executorService=new ThreadPoolExecutor(3,10,2,TimeUnit.SECONDS,new ArrayBlockingQueue<Runnable>(10));
             Future<Void> sendFuture = executorService.submit(new Callable<Void>() {
                 @Override
                 public Void call() throws Exception {
