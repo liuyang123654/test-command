@@ -15,6 +15,7 @@ import com.bosssoft.basic.ability.SocketManager;
 import com.bosssoft.utils.EncryptAndDecryptUtils;
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -43,8 +44,8 @@ public class Client implements ClientInterface {
             ClientInterface client = ClientFactory.createClient(HOST, PORT);
             if (client != null) {
                 System.out.println("Connected to server");
-                client.sendFile("@all", "E:\\MyFile\\boss\\demo15\\bosssoft-programDemo\\src\\main\\java\\com\\bosssoft\\filesend\\file.xml");
-                //client.showFileContent("file.xml"); // Uncomment this line if needed
+                client.sendFile("@all", "E:\\MyFile\\boss\\demo15\\bosssoft-programDemo\\src\\main\\java\\com\\bosssoft\\file\\file.xml");
+                client.showFileContent("E:\\MyFile\\boss\\demo15\\bosssoft-programDemo\\src\\main\\java\\com\\bosssoft\\file\\file.json");
                 System.out.println("Connection closed");
             } else {
                 System.out.println("Failed to connect to server");
