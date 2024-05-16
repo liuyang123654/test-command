@@ -11,8 +11,6 @@
  */
 package com.bosssoft.basic.ability;
 
-import java.nio.channels.Channel;
-
 /**
  * @className: FileTransferProgressObserver
  * @description:

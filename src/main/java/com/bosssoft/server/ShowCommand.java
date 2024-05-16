@@ -11,11 +11,9 @@
  */
 package com.bosssoft.server;
 
-import com.bosssoft.utils.FilePaserUtils;
+import com.bosssoft.exception.ExceptionHandler;
 
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 /**
  * @className: ShowCommand
@@ -44,11 +42,14 @@ public class ShowCommand implements Command {
                 return;
             }
             // 读取文件内容并发送回客户端
-            BufferedReader reader = new BufferedReader(new FileReader(file));
-            String line;
-            StringBuilder contentBuilder = new StringBuilder(); // 创建一个 StringBuilder 用于存储文件内容
-            while ((line = reader.readLine()) != null) {
-                contentBuilder.append(line).append("\n"); // 将每行内容添加到 StringBuilder 中
+            StringBuilder contentBuilder;
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                String line;
+                // 创建一个 StringBuilder 用于存储文件内容
+                contentBuilder = new StringBuilder();
+                while ((line = reader.readLine()) != null) {
+                    contentBuilder.append(line).append("\n"); // 将每行内容添加到 StringBuilder 中
+                }
             }
             contentBuilder.append("EOF").append("\n"); // 在文件内容后添加 "EOF" 标记表示文件结束
 
@@ -58,15 +59,8 @@ public class ShowCommand implements Command {
             writer.flush(); // 确保所有内容都被发送
 
         } catch (IOException e) {
-            try {
-                writer.write("读取文件时发生错误：" + e.getMessage());
-                writer.newLine();
-                writer.flush();
-            } catch (IOException ex) {
-                System.err.println("无法写入客户端：" + ex.getMessage());
-            }
+            ExceptionHandler.handleException(e); // 使用异常处理类处理异常
         }
     }
-
 
 }

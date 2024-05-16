@@ -11,6 +11,8 @@
  */
 package com.bosssoft.server;
 
+import com.bosssoft.exception.ExceptionHandler;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -102,7 +104,7 @@ public class Server {
                     }
                 }
             } catch (IOException e) {
-                System.out.println("处理客户端数据时出错：" + e.getMessage());
+                ExceptionHandler.handleException(e);
             }
         }
     }

@@ -14,6 +14,8 @@ package com.bosssoft.exception;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.IOException;
+
 /**
  * @className: ExceptionHandler
  * @description: 异常处理机制
@@ -25,45 +27,54 @@ public class ExceptionHandler {
     private static final Logger logger = LoggerFactory.getLogger(ExceptionHandler.class);
 
     /**
-     * 如果抛出的的是ServiceException，则调用该方法
-     * @param e 业务异常
-     * @return Result
+     * 通用异常处理方法
+     *
+     * @param e 异常
      */
-    /**
-     * @param e
-     * @description: 自定义业务异常
-     * @author: LiuYang
-     * @date: 2024/05/15 17:19
-     * @return: void
-     **/
-    public static void ServiceExceptionHandler(ServiceException e) {
-        logger.error("错误码：", e.getCode(), ";发生业务异常！原因是：", e.getMessage());
-        System.out.println("发生业务异常！原因是：{}" + e.getMessage());
-    }
-
-
-    /**
-     * @param e
-     * @description: 空指针异常
-     * @author: LiuYang
-     * @date: 2024/05/15 17:19
-     * @return: void
-     **/
-    public void exceptionHandler(NullPointerException e) {
-        logger.error("发生空指针异常！原因是:", e);
-        System.out.println("发生空指针异常！原因是：{}" + e.getMessage());
+    public static void handleException(Throwable e) {
+        if (e instanceof ServiceException) {
+            handleServiceException((ServiceException) e);
+        } else if (e instanceof NullPointerException) {
+            handleNullPointerException((NullPointerException) e);
+        } else {
+            handleException((Exception) e);
+        }
     }
 
     /**
-     * @param e
-     * @description: 其他异常
-     * @author: LiuYang
-     * @date: 2024/05/15 17:18
-     * @return: void
-     **/
-    public void exceptionHandler(Exception e) {
-        logger.error("发生未知异常！原因是:", e);
-        System.out.println("发生未知异常！原因是：{}" + e.getMessage());
+     * 处理业务异常
+     *
+     * @param e 业务异常
+     */
+    private static void handleServiceException(ServiceException e) {
+        logger.error("错误码：{}; 发生业务异常！原因是：{}", e.getCode(), e.getMessage());
+    }
+
+    /**
+     * 处理空指针异常
+     *
+     * @param e 空指针异常
+     */
+    private static void handleNullPointerException(NullPointerException e) {
+        logger.error("发生空指针异常！原因是：{}", e.getMessage(), e);
+    }
+
+    /**
+     * 处理IO异常
+     *
+     * @param e IO异常
+     */
+    private static void handleIOException(IOException e) {
+        logger.error("发生IO异常！原因是：{}", e.getMessage(), e);
+    }
+
+    /**
+     * 处理其他异常
+     *
+     * @param e 其他异常
+     */
+    private static void handleException(Exception e) {
+        logger.error("发生未知异常！原因是：{}", e.getMessage(), e);
     }
 
 }

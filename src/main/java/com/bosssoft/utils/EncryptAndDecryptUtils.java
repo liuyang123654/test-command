@@ -49,15 +49,11 @@ public class EncryptAndDecryptUtils {
      **/
     public static String decode(String str) {
         try {
-            String res = new String(Base64Utils.decode(str.getBytes()), "utf8");
-            return res;
+            return new String(Base64Utils.decode(str.getBytes()), "utf8");
         } catch (UnsupportedEncodingException e) {
-            //new一个自定义业务异常类
-            ServiceException serviceException=new ServiceException(Code.UnsupportedEncodingException,e.getMessage());
-            //调用异常处理类
-            ExceptionHandler.ServiceExceptionHandler(serviceException);
+            ExceptionHandler.handleException(e);
+            return "解码异常";
         }
-        return "解码异常";
     }
 
 }

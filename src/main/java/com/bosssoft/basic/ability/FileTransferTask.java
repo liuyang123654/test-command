@@ -11,7 +11,6 @@
  */
 package com.bosssoft.basic.ability;
 
-import java.nio.channels.Channel;
 import java.util.ArrayList;
 import java.util.List;
 
