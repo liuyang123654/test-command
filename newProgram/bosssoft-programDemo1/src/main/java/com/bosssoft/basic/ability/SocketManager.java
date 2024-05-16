@@ -47,7 +47,6 @@ public class SocketManager implements Closeable {
             stringBuilder.append(line).append("\n");
         }
         return stringBuilder.toString();
-//        return reader.readLine();
     }
 
     @Override

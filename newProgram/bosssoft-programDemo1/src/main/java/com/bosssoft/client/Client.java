@@ -27,8 +27,7 @@ import java.util.concurrent.TimeUnit;
  * @date: 2024/5/15 11:06
  * @since 1.0
  **/
-public class Client /*implements ClientInterface*/ {
-    //    private final SocketManager socketManager;
+public class Client {
     private static final String HOST = "localhost";
     private static final int PORT = 12345;
 
@@ -37,7 +36,7 @@ public class Client /*implements ClientInterface*/ {
 
         try (SocketManager socketManager = new SocketManager(HOST, PORT)) {
             System.out.println("Connected to server");
-            System.out.println("请输入命令");
+            System.out.println("请输入命令：(show 文件地址) or (send ID 文件地址)");
             Scanner scanner = new Scanner(System.in);
             String newCommand = scanner.nextLine();
             String[] commands = newCommand.split(" ");
