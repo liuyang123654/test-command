@@ -1,18 +1,23 @@
 /**
+ * Copyright (C), 2001-2031, www.bosssof.com.cn
  * FileName: Server.java
- * Author:boss2
- * Date: 2024/5/15 11:06
+ * Author: gry
+ * Date: 2024/5/15 23:33
  * Description:
- * Server服务端app
+ * 0
+ * History:
+ * Date          Author   Version  Desc
+ * 2024-01-01    bosssoft  1.0.0   initialize this file
  */
 package com.bosssoft.server;
-
-import sun.jvm.hotspot.runtime.Thread;
 
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.concurrent.*;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * @className: Server
@@ -21,14 +26,19 @@ import java.util.concurrent.*;
  * @date: 2024/5/15 11:06
  * @since 1.0
  **/
-
 public class Server {
     private ServerSocket serverSocket;
     private ExecutorService pool;
 
     public Server(int port) throws IOException {
         serverSocket = new ServerSocket(12345);
-        pool = Executors.newFixedThreadPool(10);
+        pool = new ThreadPoolExecutor(
+                10,
+                10,
+                0L,
+                TimeUnit.MILLISECONDS,
+                new ArrayBlockingQueue<Runnable>(10)
+        );
     }
 
     public void startServer() {
@@ -44,6 +54,7 @@ public class Server {
             e.printStackTrace();
         }
     }
+
     public static void main(String[] args) {
         int port = 12345; // Default port
         if (args.length > 0) {
@@ -62,6 +73,7 @@ public class Server {
             e.printStackTrace();
         }
     }
+
     private class ClientHandler implements Runnable {
         private Socket clientSocket;
 
