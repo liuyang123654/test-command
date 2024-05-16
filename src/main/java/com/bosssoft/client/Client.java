@@ -1,9 +1,13 @@
 /**
- * FileName: Client.java
- * Author: boss2
- * Date: 2024/5/15 11:06
+ * Copyright (C), 2001-2031, www.bosssof.com.cn
+ * FileName: Server.java
+ * Author: ShaoWen
+ * Date: 2024/5/15 23:33
  * Description:
- * Client客户端app
+ * Client客户端
+ * History:
+ * Date          Author   Version  Desc
+ * 2024-01-01    bosssoft  1.0.0   initialize this file
  */
 package com.bosssoft.client;
 
@@ -38,7 +42,7 @@ public class Client implements ClientInterface {
             ClientInterface client = ClientFactory.createClient(HOST, PORT);
             if (client != null) {
                 System.out.println("Connected to server");
-                client.sendFile("@all", "E:\\Desktop\\abc\\boss-test\\src\\main\\java\\com\\bosssoft\\filesend\\file.xml");
+                client.sendFile("@all", "E:\\MyFile\\boss\\demo15\\bosssoft-programDemo\\src\\main\\java\\com\\bosssoft\\filesend\\file.xml");
                 //client.showFileContent("file.xml"); // Uncomment this line if needed
                 System.out.println("Connection closed");
             } else {
@@ -81,51 +85,3 @@ public class Client implements ClientInterface {
         });
     }
 }
-//
-//public class Client {
-//    public static void main(String[] args) {
-//        ThreadPoolExecutor threadPoolExecutor=new ThreadPoolExecutor(2,5,2,TimeUnit.SECONDS,new ArrayBlockingQueue<Runnable>(10));
-//        try {
-//            final Socket socket = new Socket("localhost", 12345);
-//            System.out.println("Connected to server");
-//
-//            // 异步发送消息
-//            Future<Void> sendFuture = threadPoolExecutor.submit(new Callable<Void>() {
-//                @Override
-//                public Void call() throws Exception {
-//                    BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream()));
-//                    String message = "Hello from client";
-//                    writer.write(message);
-//                    writer.newLine();
-//                    writer.flush();
-//                    System.out.println("Sent message to server: " + message);
-//                    return null;
-//                }
-//            });
-//
-//            // 异步接收响应
-//            Future<String> receiveFuture = threadPoolExecutor.submit(new Callable<String>() {
-//                @Override
-//                public String call() throws Exception {
-//                    BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-//                    String response = reader.readLine();
-//                    System.out.println("Received response from server: " + response);
-//                    return response;
-//                }
-//            });
-//
-//            // 等待发送和接收完成
-//            sendFuture.get();
-//            String response = receiveFuture.get();
-//
-//            // 关闭连接
-//            socket.close();
-//            System.out.println("Connection closed");
-//        } catch (IOException | InterruptedException | ExecutionException e) {
-//            e.printStackTrace();
-//        }finally {
-//            //关闭线程池
-//            threadPoolExecutor.shutdown();
-//        }
-//    }
-//}

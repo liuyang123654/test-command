@@ -1,9 +1,13 @@
 /**
- * FileName: SocketManager.java
- * Author: ShaoWen
- * Date: 2024/5/16 9:40
+ * Copyright (C), 2001-2031, www.bosssof.com.cn
+ * FileName: Server.java
+ * Author: gry
+ * Date: 2024/5/15 23:33
  * Description:
  * 管理客户端
+ * History:
+ * Date          Author   Version  Desc
+ * 2024-01-01    bosssoft  1.0.0   initialize this file
  */
 package com.bosssoft.server;
 

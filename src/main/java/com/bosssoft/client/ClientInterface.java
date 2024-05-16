@@ -1,9 +1,13 @@
 /**
- * FileName: ClientInterface.java
+ * Copyright (C), 2001-2031, www.bosssof.com.cn
+ * FileName: Server.java
  * Author: ShaoWen
- * Date: 2024/5/16 9:33
+ * Date: 2024/5/15 23:33
  * Description:
- * 客户端接口
+ * Client客户端接口
+ * History:
+ * Date          Author   Version  Desc
+ * 2024-01-01    bosssoft  1.0.0   initialize this file
  */
 package com.bosssoft.client;
 
