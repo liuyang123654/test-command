@@ -4,7 +4,7 @@
  * Author: gry
  * Date: 2024/5/15 23:33
  * Description:
- * 指令接口
+ * 指令
  * History:
  * Date          Author   Version  Desc
  * 2024-01-01    bosssoft  1.0.0   initialize this file
@@ -15,7 +15,7 @@ import java.io.IOException;
 /**
  * @className: Command
  * @description:
- * @author: gry
+ * @author:
  * @date: 2024/5/16 9:50
  * @since 1.0
  **/

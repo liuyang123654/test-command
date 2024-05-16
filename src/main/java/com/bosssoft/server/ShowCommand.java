@@ -9,15 +9,11 @@
  * Date          Author   Version  Desc
  * 2024-01-01    bosssoft  1.0.0   initialize this file
  */
-package com.bosssoft.service;
-
+package com.bosssoft.server;
 
 import com.bosssoft.utils.FilePaserUtils;
 
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
-import java.io.Writer;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -37,25 +33,39 @@ public class ShowCommand implements Command {
     }
 
     @Override
-    public void execute() throws IOException {
-        //读取文件内容
-        StringBuffer content=new StringBuffer();
-        // 用带缓冲的流读取文件，默认缓冲区8k
-        try (BufferedReader br = Files.newBufferedReader(Paths.get(filePath))){
+    public void execute() {
+        try {
+            // 确保文件存在
+            File file = new File(filePath);
+            if (!file.exists()) {
+                writer.write("文件不存在：" + filePath);
+                writer.newLine();
+                writer.flush();
+                return;
+            }
+            // 读取文件内容并发送回客户端
+            BufferedReader reader = new BufferedReader(new FileReader(file));
             String line;
-            while ((line = br.readLine()) != null) {
-                content.append(line);
+            StringBuilder contentBuilder = new StringBuilder(); // 创建一个 StringBuilder 用于存储文件内容
+            while ((line = reader.readLine()) != null) {
+                contentBuilder.append(line).append("\n"); // 将每行内容添加到 StringBuilder 中
+            }
+            contentBuilder.append("EOF").append("\n"); // 在文件内容后添加 "EOF" 标记表示文件结束
+
+            String fileContent = contentBuilder.toString(); // 将 StringBuilder 转换为字符串
+
+            writer.write(fileContent); // 将整个文件内容写入输出流
+            writer.flush(); // 确保所有内容都被发送
+
+        } catch (IOException e) {
+            try {
+                writer.write("读取文件时发生错误：" + e.getMessage());
+                writer.newLine();
+                writer.flush();
+            } catch (IOException ex) {
+                System.err.println("无法写入客户端：" + ex.getMessage());
             }
         }
-
-        //读取到文件内容后，调用文件解析工具,把文件内容解析
-        Object obj=FilePaserUtils.parse(content.toString());
-
-        // 读取文件内容并发送回客户端
-        writer.write("文件内容显示：" + filePath);
-        writer.write(obj.toString());
-        writer.newLine();
-        writer.flush();
     }
 
 

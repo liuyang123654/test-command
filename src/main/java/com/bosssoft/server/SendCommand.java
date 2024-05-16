@@ -9,7 +9,7 @@
  * Date          Author   Version  Desc
  * 2024-01-01    bosssoft  1.0.0   initialize this file
  */
-package com.bosssoft.service;
+package com.bosssoft.server;
 
 import com.bosssoft.basic.ability.FileTransferProgressObserver;
 import com.bosssoft.basic.ability.FileTransferTask;

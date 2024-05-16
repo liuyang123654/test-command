@@ -40,7 +40,12 @@ public class SocketManager implements Closeable {
     }
 
     public String receive() throws IOException {
-        return reader.readLine();
+        StringBuilder stringBuilder = new StringBuilder();
+        String line;
+        while (!(line = reader.readLine()).equals("EOF")) {
+            stringBuilder.append(line).append("\n");
+        }
+        return stringBuilder.toString();
     }
 
     @Override
