@@ -73,8 +73,14 @@ public class SendCommand implements Command{
         FileTransferTask fileTransferTask=new FileTransferTask();
         //注册观察者
         fileTransferTask.registerObserver(new FileTransferProgressObserver());
+
         //改变事件状态，让观察者被通知到
-        fileTransferTask.setStatus("文件接收完成",writer);
+        StringBuffer stringBuffer=new StringBuffer("文件接收完成");
+        stringBuffer.append('\n');
+        // 内容后添加 "EOF" 标记表示文件结束
+        stringBuffer.append("EOF").append("\n");
+
+        fileTransferTask.setStatus(stringBuffer.toString(),writer);
         try{
             writer.newLine();
             writer.flush();//刷新流，保证都被提交
@@ -85,3 +91,4 @@ public class SendCommand implements Command{
     }
 
 }
+
