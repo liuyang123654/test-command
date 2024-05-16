@@ -9,7 +9,7 @@
  * Date          Author   Version  Desc
  * 2024-01-01    bosssoft  1.0.0   initialize this file
  */
-package com.bosssoft.server;
+package com.bosssoft.basic.ability;
 
 import java.io.*;
 import java.net.Socket;

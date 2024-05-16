@@ -11,7 +11,7 @@
  */
 package com.bosssoft.client;
 
-import com.bosssoft.server.SocketManager;
+import com.bosssoft.basic.ability.SocketManager;
 
 import java.io.IOException;
 

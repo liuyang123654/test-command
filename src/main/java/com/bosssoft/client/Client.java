@@ -11,9 +11,10 @@
  */
 package com.bosssoft.client;
 
-import com.bosssoft.server.SocketManager;
-import org.springframework.util.Base64Utils;
+import com.bosssoft.basic.ability.SocketManager;
+import com.bosssoft.utils.EncryptAndDecryptUtils;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -58,8 +59,17 @@ public class Client implements ClientInterface {
         ThreadPoolExecutor threadPool = new ThreadPoolExecutor(2, 5, 2, TimeUnit.SECONDS, new ArrayBlockingQueue<>(10));
         threadPool.submit(() -> {
             try {
-                byte[] data = Files.readAllBytes(Paths.get(filePath));
-                String encodedContent = String.valueOf(Base64Utils.encode(data));
+                //读取文件内容
+                StringBuffer content = new StringBuffer();
+                // 用带缓冲的流读取文件，默认缓冲区8K
+                try (BufferedReader br = Files.newBufferedReader(Paths.get(filePath))) {
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        content.append(line);
+                    }
+                }
+                String encodedContent = EncryptAndDecryptUtils.encode(content.toString());
+
                 String tempPath = "encoded" + filePath;
                 Files.write(Paths.get(tempPath), encodedContent.getBytes());
                 String message = "send " + receiver + tempPath;
