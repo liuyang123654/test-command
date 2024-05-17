@@ -11,6 +11,8 @@
  */
 package com.bosssoft.server;
 
+import com.bosssoft.exception.ServiceException;
+
 import java.io.IOException;
 /**
  * @className: Command
@@ -20,5 +22,5 @@ import java.io.IOException;
  * @since 1.0
  **/
 public interface Command {
-    void execute() throws IOException;
+    void execute() throws IOException, ServiceException;
 }

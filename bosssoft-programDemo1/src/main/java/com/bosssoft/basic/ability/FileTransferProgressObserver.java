@@ -21,7 +21,7 @@ import java.rmi.ServerException;
 
 /**
  * @className: FileTransferProgressObserver
- * @description: 本类为文件传输过程观察者，观察的是FileTransferTask任务
+ * @description: 本类为文件传输过程观察者，观察的是FileTransferTask任务，文件接收状态改变时会进行更新
  * @author: LiuYang
  * @date: 2024/5/15 16:22
  * @since 1.0
@@ -31,7 +31,7 @@ public class FileTransferProgressObserver implements IObserver {
     @Override
     /**
      * @description:
-     * 观察者被通知到，符合条件的话就更新信息
+     * 观察者被通知到，符合条件的话就更新信息文件接收状态改变时会进行更新
      *
      * @author: LiuYang
      * @date: 2024/05/16 13:49

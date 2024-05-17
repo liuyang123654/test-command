@@ -14,6 +14,7 @@ package com.bosssoft.server;
 import com.bosssoft.basic.ability.FileTransferProgressObserver;
 import com.bosssoft.basic.ability.FileTransferTask;
 import com.bosssoft.exception.ExceptionHandler;
+import com.bosssoft.exception.ServiceException;
 import com.bosssoft.utils.EncryptAndDecryptUtils;
 
 import java.io.*;
@@ -37,7 +38,7 @@ public class SendCommand implements Command{
     }
 
     @Override
-    public void execute() throws IOException {
+    public void execute() throws IOException, ServiceException {
         //读取文件内容
         byte[] fileContent = Files.readAllBytes(Paths.get(filePath));
         //解密文件

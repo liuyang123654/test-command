@@ -12,6 +12,7 @@
 package com.bosssoft.server;
 
 import com.bosssoft.exception.ExceptionHandler;
+import com.bosssoft.exception.ServiceException;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -97,7 +98,7 @@ public class Server {
                             writer.flush();
                     }
                 }
-            } catch (IOException e) {
+            } catch (IOException | ServiceException e) {
                 //调用统一异常处理类
                 ExceptionHandler.handleException(e);
                 System.out.println("处理客户端数据时出错：" + e.getMessage());
