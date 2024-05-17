@@ -32,7 +32,6 @@ import java.util.concurrent.TimeUnit;
  * @author: gry
  **/
 public class Client {
-    //    private final SocketManager socketManager;
     private static final String HOST = "localhost";
     private static final int PORT = 1234;
 

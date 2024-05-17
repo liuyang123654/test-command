@@ -48,7 +48,7 @@ public class FileTransferTask implements ISubject {
      **/
     @Override
     public void notifyObservers(BufferedWriter bufferedWriter) throws IOException {
-        if (list.size() != 0) {
+        if (!list.isEmpty()) {
             for (IObserver observer : list) {
                 observer.update(this, bufferedWriter);
             }

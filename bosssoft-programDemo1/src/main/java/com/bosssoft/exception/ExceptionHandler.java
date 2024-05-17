@@ -36,6 +36,8 @@ public class ExceptionHandler {
             handleServiceException((ServiceException) e);
         } else if (e instanceof NullPointerException) {
             handleNullPointerException((NullPointerException) e);
+        } else if (e instanceof IOException) {
+            handleIOException((IOException) e);
         } else {
             handleException((Exception) e);
         }

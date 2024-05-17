@@ -14,11 +14,9 @@ package com.bosssoft.utils;
 
 import com.alibaba.fastjson.JSON;
 import jdk.internal.org.xml.sax.InputSource;
-import jdk.internal.org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilderFactory;
 import java.io.StringReader;
-import java.util.Vector;
 
 /**
  * @className: FilePaserUtils

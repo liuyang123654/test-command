@@ -42,13 +42,15 @@ public class ShowCommand implements Command {
                 return;
             }
             // 读取文件内容并发送回客户端
-            BufferedReader reader = new BufferedReader(new FileReader(file));
-            String line;
-            // 创建一个 StringBuilder 用于存储文件内容
-            StringBuilder contentBuilder = new StringBuilder();
-            while ((line = reader.readLine()) != null) {
-                // 将每行内容添加到 StringBuilder 中
-                contentBuilder.append(line).append("\n");
+            StringBuilder contentBuilder;
+            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                String line;
+                // 创建一个 StringBuilder 用于存储文件内容
+                contentBuilder = new StringBuilder();
+                while ((line = reader.readLine()) != null) {
+                    // 将每行内容添加到 StringBuilder 中
+                    contentBuilder.append(line).append("\n");
+                }
             }
             // 在文件内容后添加 "EOF" 标记表示文件结束
             contentBuilder.append("EOF").append("\n");

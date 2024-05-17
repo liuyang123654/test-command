@@ -10,9 +10,7 @@
  * 2024-01-01    bosssoft  1.0.0   initialize this file
  */
 package com.bosssoft.utils;
-import com.bosssoft.entity.Code;
 import com.bosssoft.exception.ExceptionHandler;
-import com.bosssoft.exception.ServiceException;
 import org.springframework.util.Base64Utils;
 
 import java.io.UnsupportedEncodingException;

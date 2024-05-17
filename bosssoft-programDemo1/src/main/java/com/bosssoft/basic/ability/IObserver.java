@@ -2,7 +2,6 @@ package com.bosssoft.basic.ability;
 
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.nio.channels.Channel;
 
 /**
  * @description:

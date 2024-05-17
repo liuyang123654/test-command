@@ -2,11 +2,10 @@ package com.bosssoft.entity;
 
 /**
  * 返回状态码
- * 
+ *
  * @author ruoyi
  */
-public class Code
-{
+public class Code {
     /**
      * 操作成功
      */
@@ -99,5 +98,5 @@ public class Code
      * @param null
      * @return: null
      **/
-    public static final int UnsupportedEncodingException=111;
+    public static final int UnsupportedEncodingException = 111;
 }
