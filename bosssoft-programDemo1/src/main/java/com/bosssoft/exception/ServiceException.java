@@ -21,10 +21,13 @@ package com.bosssoft.exception;
  **/
 public class ServiceException extends Exception{
 
-    //自定义错误码
+    /**
+     * 自定义错误码
+     **/
     private final int code;
-    public ServiceException(int code,String msg){
-        super(msg);
+
+    public ServiceException(int code,Throwable throwable){
+        super(throwable.getMessage(),throwable);
         this.code=code;
     }
 

@@ -13,6 +13,7 @@ package com.bosssoft.client;
 
 import com.bosssoft.basic.ability.SocketManager;
 import com.bosssoft.exception.ExceptionHandler;
+import com.bosssoft.exception.ServiceException;
 import com.bosssoft.utils.EncryptAndDecryptUtils;
 
 import java.io.BufferedReader;
@@ -35,12 +36,13 @@ public class Client {
     private static final String HOST = "localhost";
     private static final int PORT = 1234;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException, InterruptedException {
         ThreadPoolExecutor threadPool = new ThreadPoolExecutor(2, 5, 2, TimeUnit.SECONDS, new ArrayBlockingQueue<>(10));
 
+
+        System.out.println("Connected to server");
+        System.out.println("请输入命令:show + ' ' +  文件地址 / send + ID + 文件地址");
         try (SocketManager socketManager = new SocketManager(HOST, PORT)) {
-            System.out.println("Connected to server");
-            System.out.println("请输入命令:show + ' ' +  文件地址 / send + ID + 文件地址");
             Scanner scanner = new Scanner(System.in);
             String newCommand = scanner.nextLine();
             String[] commands = newCommand.split(" ");
@@ -54,12 +56,12 @@ public class Client {
             } else {
                 System.out.println("您的输入有误");
             }
-
             threadPool.shutdown();
             threadPool.awaitTermination(20, TimeUnit.SECONDS);
             System.out.println("Connection closed");
         } catch (Exception e) {
-            e.printStackTrace();
+            ExceptionHandler.handleException(e);
+            throw e;
         }
     }
 

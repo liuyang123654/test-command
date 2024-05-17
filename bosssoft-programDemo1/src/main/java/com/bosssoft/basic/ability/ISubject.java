@@ -11,12 +11,15 @@
  */
 package com.bosssoft.basic.ability;
 
+import com.bosssoft.exception.ServiceException;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 
 /**
  * @className: ISubject
  * @description:
+ * 观察的主题接口，FileTransferTask.java类实现了这个接口
  * @author: LiuYang
  * @date: 2024/5/16 8:52
  * @since 1.0
@@ -43,5 +46,5 @@ public interface ISubject {
      * @author: LiuYang
      * @date: 2024/05/16 08:59
      **/
-    void notifyObservers(BufferedWriter bufferedWriter) throws IOException;
+    void notifyObservers(BufferedWriter bufferedWriter) throws IOException, ServiceException;
 }

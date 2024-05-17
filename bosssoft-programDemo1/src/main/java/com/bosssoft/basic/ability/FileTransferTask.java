@@ -11,6 +11,8 @@
  */
 package com.bosssoft.basic.ability;
 
+import com.bosssoft.exception.ServiceException;
+
 import java.io.BufferedWriter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -47,7 +49,7 @@ public class FileTransferTask implements ISubject {
      * @date: 2024/05/15 16:38
      **/
     @Override
-    public void notifyObservers(BufferedWriter bufferedWriter) throws IOException {
+    public void notifyObservers(BufferedWriter bufferedWriter) throws IOException, ServiceException {
         if (!list.isEmpty()) {
             for (IObserver observer : list) {
                 observer.update(this, bufferedWriter);
@@ -60,7 +62,7 @@ public class FileTransferTask implements ISubject {
      * @author: LiuYang
      * @date: 2024/05/15 16:52
      **/
-    public void setStatus(String status, BufferedWriter bufferedWriter) throws IOException {
+    public void setStatus(String status, BufferedWriter bufferedWriter) throws IOException, ServiceException {
         this.status = status;
         notifyObservers(bufferedWriter); // 状态变化时通知观察者
     }

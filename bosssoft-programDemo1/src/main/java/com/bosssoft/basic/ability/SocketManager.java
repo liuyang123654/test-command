@@ -17,13 +17,23 @@ import java.net.Socket;
 /**
  * @className: SocketManager
  * @description:
+ * 管理Socket的类
  * @author: ShaoWen
  * @date: 2024/5/16 9:40
  * @since 1.0
  **/
 public class SocketManager implements Closeable {
+    /**
+     *Socket连接
+     **/
     private Socket socket;
+    /**
+     *Socket的writer流
+     **/
     private BufferedWriter writer;
+    /**
+     *Socket的reader流
+     **/
     private BufferedReader reader;
 
     public SocketManager(String host, int port) throws IOException {
