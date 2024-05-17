@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit;
  * @description: 客户端
  * @author: gry
  **/
-public class Client /*implements ClientInterface*/ {
+public class Client {
     //    private final SocketManager socketManager;
     private static final String HOST = "localhost";
     private static final int PORT = 1234;
@@ -41,7 +41,7 @@ public class Client /*implements ClientInterface*/ {
 
         try (SocketManager socketManager = new SocketManager(HOST, PORT)) {
             System.out.println("Connected to server");
-            System.out.println("请输入命令");
+            System.out.println("请输入命令:show + ' ' +  文件地址 / send + ID + 文件地址");
             Scanner scanner = new Scanner(System.in);
             String newCommand = scanner.nextLine();
             String[] commands = newCommand.split(" ");
