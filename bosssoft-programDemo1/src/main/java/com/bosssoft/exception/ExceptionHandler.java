@@ -19,7 +19,7 @@ import java.io.IOException;
 /**
  * @className: ExceptionHandler
  * @description: 异常处理机制
- * @author:
+ * @author: ShaoWen
  * @date: 2024/5/15 17:12
  * @since 1.0
  **/

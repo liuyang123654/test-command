@@ -21,7 +21,6 @@ import java.net.Socket;
  * @date: 2024/5/16 9:40
  * @since 1.0
  **/
-
 public class SocketManager implements Closeable {
     private Socket socket;
     private BufferedWriter writer;
