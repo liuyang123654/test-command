@@ -1,17 +1,0 @@
-
-t
-java:S2293"YReplace the type specification in this constructor call with the diamond operator ("<>").(àğÇÒûÿÿÿÿ
-P
-java:S1191
-"5Use classes from the Java API instead of Sun classes.(‹½¶Àøÿÿÿÿ
-e
-java:S2095"JUse try-with-resources or close this "ServerSocket" in a "finally" clause.(û¬Ãøÿÿÿÿ
-=
-java:S2189 ""Add an end condition to this loop.(˜ïˆÿÿÿÿÿ
-E	java:S106"+Replace this use of System.out by a logger.(ûú ãúÿÿÿÿ
-E	java:S106#"+Replace this use of System.out by a logger.(ºøºÍûÿÿÿÿ
-E
-java:S2093"*Change this "try" to a try-with-resources.(¡»¢üùÿÿÿÿ
-E	java:S106="+Replace this use of System.out by a logger.(»ãÕëşÿÿÿÿ
-@	java:S106E"+Replace this use of System.out by a logger.(çÔ¢ò
-E	java:S106I"+Replace this use of System.out by a logger.(°£ƒøÿÿÿÿ
